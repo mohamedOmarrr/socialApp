@@ -1,7 +1,11 @@
 {
   "version": 2,
   "builds": [
-    { "src": "dist/social/**", "use": "@vercel/static" }
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist/social" }
+    }
   ],
   "routes": [
     { "src": "/(.*)", "dest": "/index.html" }
