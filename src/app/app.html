@@ -1,0 +1,8 @@
+@if (showNav) {
+<app-navbar></app-navbar>
+}
+<p-toast position="top-center"></p-toast>
+<router-outlet></router-outlet>
+@if(showNav) {
+<app-footer class="md:hidden"></app-footer>
+}

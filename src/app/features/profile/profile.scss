@@ -1,0 +1,23 @@
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #999 0%,
+    #fff 20%,
+    #999 40%,
+    #999 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmerMove 2s linear infinite;
+}
+
+@keyframes shimmerMove {
+  0% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: -100% center;
+  }
+}

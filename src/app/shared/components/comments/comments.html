@@ -1,0 +1,135 @@
+<div
+  class="fixed top-0 w-[100%] md:w-[50%] z-[999991] rounded-t-3xl mx-auto h-full py-2 flex flex-col bg-[#475763] transition-all duration-300"
+  [class]="
+    visiableComments()
+      ? 'translate-y-[0] opacity-[1] pointer-events-auto'
+      : 'translate-y-[100%] opacity-0 pointer-events-none'
+  "
+>
+  <div
+    class="flex justify-between px-5 pb-1 items-start border-b-2 border-b-gray-400 mb-2"
+  >
+    <h2 class="text-[18px] font-bold text-white">Comments</h2>
+
+    <div
+      class="rounded-3xl border-teal-700 border-[3px] hover:bg-slate-300 w-8 h-8 flex justify-center items-center"
+      (click)="commentsFunc()"
+    >
+      <i
+        class="fas fa-chevron-down font-extrabold text-[20px] text-teal-300"
+      ></i>
+    </div>
+  </div>
+  <!-- comments here!! -->
+  <div class="bg-[#4f6372] rounded-2xl h-[85%] w-[95%] m-auto">
+    <p-scrollpanel class="h-full" [style]="{ width: '100%' }">
+      <div class="pb-4">
+        @if(allCommets().length > 0){ @for (c of allCommets(); track c._id) {
+        <div class="flex items-center px-5 mb-5">
+          <div class="w-[45px] h-[45px] rounded-full overflow-hidden me-3 pt-1">
+            <img
+              class="w-[100%] rounded-full"
+              src="./images/none.jpg"
+              alt="person's photo who make a comment"
+            />
+          </div>
+          <div class="w-full">
+            <div class="flex justify-between items-baseline">
+              <div class="flex items-baseline">
+                <h2 class="font-bold text-white me-3 text-[15px]">
+                  {{ c.commentCreator.name }}
+                </h2>
+                <h4 class="text-[12px] font-mono text-teal-400">
+                  {{ edit.getTimeAgo(c.createdAt) }}
+                </h4>
+              </div>
+              @if(creatorID() === userID()){
+
+              <i
+                class="text-white fas fa-plus cursor-pointer hover:text-[24px] transition-all duration-150"
+                (click)="options(c._id)"
+                [class.rotate-45]="showOptions() === c._id"
+              ></i>
+
+              @if(showOptions()){
+              <div
+                class="absolute right-[15%] -translate-x-1/2 flex flex-col gap-2 transition-all duration-200"
+                [class]="
+                  showOptions() === c._id
+                    ? 'opacity-100 translate-y-0 pointer-events-auto'
+                    : 'opacity-0 translate-y-3 pointer-events-none'
+                "
+                (click)="$event.stopPropagation()"
+              >
+                <!-- delete -->
+                <div
+                  class="w-8 h-8 bg-white/35 rounded-full flex justify-center items-center cursor-pointer"
+                >
+                  <i
+                    class="fas fa-trash text-red-400 text-[14px]"
+                    (click)="onDelete(showOptions())"
+                  ></i>
+                </div>
+              </div>
+              }}
+            </div>
+            <p class="text-gray-300 text-[14px]">{{ c.content }}</p>
+          </div>
+        </div>
+
+        } } @if(loading()) {
+        <ul class="list-none p-3">
+          @for(item of shimmer; track $index){
+          <li class="mb-4">
+            <div class="flex">
+              <p-skeleton
+                shape="circle"
+                size="3rem"
+                class="mr-2"
+                animation="wave"
+              />
+              <div class="self-center" style="flex: 1">
+                <p-skeleton width="70%" class="mb-2" animation="wave" />
+                <p-skeleton width="50%" animation="wave" />
+              </div>
+            </div>
+          </li>
+          }
+        </ul>
+
+        }@if(noComments()){
+        <div class="flex flex-col items-center justify-center py-8">
+          <i class="fas fa-comment-alt text-gray-400 text-6xl mb-4"></i>
+
+          <p class="text-gray-700 text-lg font-bold mb-2 text-center">
+            No comments yet
+          </p>
+
+          <p class="text-gray-400 text-sm text-center">
+            Someone has to go first, lead the way!
+          </p>
+        </div>
+
+        }
+      </div>
+    </p-scrollpanel>
+  </div>
+  <!-- comments up!! -->
+  <div class="flex mt-auto w-full px-5 gap-3">
+    <input
+      class="w-[90%] rounded-3xl border-2 border-gray-400 focus:outline-none focus:border-green-200 focus:ring-0 px-2"
+      placeholder="Add Your Comments..."
+      [formControl]="content"
+      type="text"
+    />
+    <div
+      class="h-10 w-10 flex justify-center items-center bg-[rgb(5,218,129)] rounded-full"
+    >
+      <i
+        class="fas fa-paper-plane"
+        (click)="createComment()"
+        [class.animate-shake]="loading()"
+      ></i>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="flex w-full min-h-screen">
+  <!-- SIDEBAR - LEFT (50%) -->
+  <div class="border-r border-gray-700">
+    <app-chat></app-chat>
+  </div>
+
+  <!-- POSTS - RIGHT (50%) -->
+  <div class="w-full relative md:w-[50%] md:ms-auto bg-[#26323b] py-5">
+    <div class="mb-10 flex justify-between px-5">
+      <div class="">
+        <div
+          class="absolute left-0 top-5 w-[5px] h-10 bg-[rgb(5,218,129)] rounded-r-lg"
+        ></div>
+        <h1 class="text-white text-[25px] md:text-[32px] font-[Pacifico]">
+          Home Page
+        </h1>
+      </div>
+      <div
+        (click)="goProfile()"
+        class="border-[1px] pe-5 border-gray-400 flex rounded-full w-fit items-center bg-[#4f606e] gap-3 cursor-pointer p-1 hover:bg-[#2a2d32] transition"
+      >
+        @if(userImg()){
+
+        <img [src]="userImg()" class="w-9 h-9 rounded-full bg-white" />
+        }@else {
+        <img
+          src="./images/instgram user.png"
+          class="w-9 h-9 rounded-full bg-white"
+        />
+        }
+
+        <div class="w-[1px] h-7 bg-white"></div>
+
+        <h4 class="text-gray-200 shimmer-text text-sm font-mono">Mohamed</h4>
+      </div>
+    </div>
+    <app-posts></app-posts>
+  </div>
+</div>

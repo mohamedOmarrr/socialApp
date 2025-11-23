@@ -1,0 +1,108 @@
+<nav
+  class="bg-[#4a5b69] fixed bottom-[0.1rem] md:top-0 md:bottom-0 md:left-0 right-0 w-full md:w-[80px] h-[65px] md:h-full pt-2 md:pt-3 md:rounded-none flex md:flex-col justify-around md:justify-normal items-center z-[99] border-t-[1px] md:border-[2px] border-t-gray-300 md:border-gray-400 [&_i]:transition-all"
+>
+  <div
+    class="hidden md:block top-[-17px] md:relative w-[90px] h-[90px] md:top-4 md:w-[80px] md:h-[120px] md:border-b-[1px] md:border-b-gray-300 mb-10 bg-cover bg-center"
+    style="background-image: url('./images/logo-cut-removebg-preview.png')"
+  ></div>
+
+  <!-- Menu Items -->
+  <!-- Mobile Layout -->
+  <div class="w-full flex md:hidden justify-between items-center px-5 relative">
+    <!-- Left Icons -->
+    <div class="flex">
+      <a
+        class="flex flex-col items-center text-white p-7 relative hover:text-[rgb(5,218,129)] has-top-border"
+        routerLink="/home"
+        routerLinkActive="active-tab"
+      >
+        <i class="pi pi-home text-[32px] transition-all duration-300"></i>
+      </a>
+
+      <a
+        class="flex flex-col items-center text-white p-7 relative hover:text-[rgb(5,218,129)] has-top-border"
+        routerLink="/profile"
+        routerLinkActive="active-tab"
+      >
+        <i class="pi pi-user text-[32px] transition-all duration-300"></i>
+      </a>
+    </div>
+
+    <!-- Logo In Center Circle -->
+    <div
+      class="absolute left-1/2 top-[-15px] -translate-x-1/2 w-[70px] h-[70px] rounded-full bg-white border-2 border-gray-300 flex justify-center items-center"
+    >
+      <div
+        class="w-[110%] h-[110%] rounded-full bg-cover bg-center"
+        style="background-image: url('./images/logo-cut-removebg-preview.png')"
+      ></div>
+    </div>
+
+    <!-- Right Icons -->
+    <div class="flex">
+      <a
+        class="flex flex-col items-center text-white p-7 relative hover:text-[rgb(5,218,129)] has-top-border"
+        routerLink=""
+        routerLinkActive=""
+        (click)="opps()"
+      >
+        <i class="pi pi-inbox text-[32px] transition-all duration-300"></i>
+      </a>
+
+      <a
+        class="flex flex-col items-center text-white p-7 relative hover:text-[rgb(5,218,129)] has-top-border"
+        routerLink="/signUp"
+        routerLinkActive="active-tab"
+      >
+        <i class="pi pi-sign-out text-[32px] transition-all duration-300"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Desktop Layout -->
+  <div
+    class="hidden md:flex text-white text-[13px] flex-col md:h-[50%] md:w-full justify-between items-center ms-auto"
+  >
+    <!-- Home -->
+    <a
+      routerLink="/home"
+      routerLinkActive="active-desktop"
+      class="flex flex-col md:w-full items-center px-2 py-1 hover:text-green-300"
+    >
+      <i class="pi pi-home text-[24px]"></i>
+      <h5 class="text-[12px] font-semibold">Home</h5>
+    </a>
+
+    <!-- Profile -->
+    <a
+      routerLink="/profile"
+      routerLinkActive="active-desktop"
+      class="flex flex-col md:w-full items-center px-2 py-1 hover:text-green-300"
+    >
+      <i class="pi pi-user text-[24px]"></i>
+      <h5 class="text-[12px] font-semibold">Profile</h5>
+    </a>
+
+    <!-- signOut -->
+    <a
+      routerLink="/signUp"
+      routerLinkActive="active-desktop"
+      class="flex flex-col md:w-full items-center px-2 py-1 hover:text-green-300"
+    >
+      <i class="pi pi-sign-out text-[24px]"></i>
+      <h5 class="text-[12px] font-semibold">Sign Out</h5>
+    </a>
+
+    <!-- Inbox -->
+    <a class="flex flex-col items-center px-2 py-1 hover:text-green-300">
+      <i class="pi pi-inbox text-[26px]"></i>
+      <h5 class="text-[12px] font-semibold">Inbox</h5>
+    </a>
+
+    <!-- Settings -->
+    <a class="flex flex-col items-center px-2 py-1 hover:text-green-300">
+      <i class="pi pi-cog text-[26px]"></i>
+      <h5 class="text-[12px] font-semibold">Settings</h5>
+    </a>
+  </div>
+</nav>

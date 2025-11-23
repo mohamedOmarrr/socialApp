@@ -1,0 +1,112 @@
+<div class="w-[80%] m-auto">
+  <h1
+    class="py-2 px-3 border-[3px] my-3 text-white font-mono border-gray-300 rounded-3xl cursor-pointer bg-[#66849c]"
+    (click)="callForm($event)"
+  >
+    What's in your mind
+  </h1>
+</div>
+
+@if (visible) {
+<div
+  class="z-50 fixed top-0 left-0 w-full h-[100%] bg-[rgba(0,0,0,0.5)]"
+  (click)="callForm($event)"
+>
+  <form
+    #formRef
+    class="cursor-pointer w-[90%] lg:w-[45%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3f4f5a] p-6 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] max-w-[90%] space-y-2 animate-[fadeIn_.25s_ease]"
+    [formGroup]="createForm"
+  >
+    <!-- TEXTAREA -->
+    <textarea
+      class="w-full resize-y p-4 min-h-[100px] bg-[#556676] text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-400 transition text-lg"
+      placeholder="What's in your mind…"
+      formControlName="body"
+    ></textarea>
+
+    <!-- FILE UPLOAD -->
+    <p-fileupload
+      name="myfile[]"
+      [multiple]="true"
+      accept="image/*"
+      [customUpload]="true"
+      [auto]="false"
+      (onSelect)="onSelectedFiles($event)"
+      [showUploadButton]="false"
+      [showCancelButton]="false"
+      chooseLabel=""
+      uploadLabel=""
+      cancelLabel=""
+      class="mb-1 rounded-xl p-3 !flex !flex-col !gap-1"
+    >
+      <ng-template #header let-chooseCallback="chooseCallback">
+        <div class="flex">
+          @if (selectedFiles.length === 0) {
+          <p-button
+            (click)="choose($event, chooseCallback)"
+            icon="pi pi-images"
+            [rounded]="true"
+            [outlined]="true"
+            class="text-green-400 border-green-400 hover:bg-green-400 hover:text-white transition"
+          />
+          }
+        </div>
+      </ng-template>
+
+      <ng-template #content>
+        @if (selectedFiles.length > 0) {
+        <div class="flex flex-wrap gap-4 pt-3">
+          @for (file of selectedFiles; track file; let i = $index) {
+          <div class="relative w-[130px] flex flex-col items-center gap-1">
+            <img
+              [src]="file.objectURL"
+              [alt]="file.name"
+              class="rounded-xl w-full h-[130px] object-cover"
+            />
+            <p-button
+              icon="pi pi-times"
+              (click)="removeFile(i)"
+              text="true"
+              severity="danger"
+              [rounded]="true"
+              class="absolute bottom-[-13px] right-1"
+            />
+            <span
+              class="text-gray-800 font-semibold text-sm text-center truncate w-full"
+            >
+              {{ file.name }}
+            </span>
+            <span class="text-gray-300 text-xs">{{
+              formatSize(file.size)
+            }}</span>
+          </div>
+          }
+        </div>
+        }
+      </ng-template>
+    </p-fileupload>
+
+    <!-- BUTTON -->
+    <div class="flex justify-end">
+      <button
+        pButton
+        type="button"
+        (click)="submit()"
+        class="!bg-[rgb(5,218,129)] hover:!bg-[rgb(30,184,120)] !text-white !py-3 !px-8 !rounded-2xl transition font-semibold tracking-wide shadow-md hover:shadow-lg active:scale-95"
+      >
+        @if (spinner()) {
+        <div class="flex items-center justify-center gap-2">
+          <h1>Creating…</h1>
+          <p-progress-spinner
+            strokeWidth="8"
+            fill="transparent"
+            animationDuration=".5s"
+            [style]="{ width: '18px', height: '18px' }"
+          />
+        </div>
+        } @else { Create }
+      </button>
+    </div>
+  </form>
+</div>
+}

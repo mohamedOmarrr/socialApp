@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+  .link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    
+    height: 500px;
+    width: 70px;
+    border-left: 3px solid gray;
+    border-bottom: 3px solid gray;
+    border-radius: 20px;
+    z-index: -1; /* دي اللي هتخليه تحت الخلفية */
+  }
+}
+.p-skeleton {
+  animation: pulse 0.9s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #c8c8c8;   /* أغمق */
+  }
+  50% {
+    background-color: #f0f0f0;   /* أفتح بوضوح */
+  }
+  100% {
+    background-color: #c8c8c8;   /* أغمق */
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+router-outlet, app-root, app-footer {
+  transform: none !important;
+  isolation: auto !important;
+  z-index: auto !important;
+  position: static !important;
+}
+
+p-toast .p-toast-container {
+  width: 60% !important;
+  max-width: 400px !important;
+  margin: 0 auto !important;
+}
+

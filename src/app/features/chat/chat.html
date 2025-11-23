@@ -1,0 +1,23 @@
+<!-- CHAT SIDEBAR -->
+<div
+  style="width: calc(50% - 80px)"
+  class="fixed top-0 bottom-0 left-[80px] hidden md:flex flex-col bg-[#5c7488] border-l border-gray-700 p-4"
+>
+  <h2 class="text-gray-300 text-lg font-semibold mb-4">Messages</h2>
+
+  <div class="flex flex-col gap-4">
+    @for (item of chatList; track $index) {
+    <!-- USER 1 -->
+    <div
+      class="border-[1px] border-gray-200 flex rounded-full w-[130px] items-center bg-[#334452] gap-3 cursor-pointer p-1 hover:bg-[#2a2d32] transition"
+    >
+      <img [src]="item.img" class="w-10 h-10 rounded-full bg-white" />
+
+      <div class="w-[1px] h-7 bg-gray-500"></div>
+
+      <h4 class="text-gray-200 text-sm">{{ item.name }}</h4>
+    </div>
+
+    }
+  </div>
+</div>

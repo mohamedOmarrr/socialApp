@@ -1,0 +1,27 @@
+{
+  // ✅ يخلّي الاقتراحات تظهر جوه السترينج (مهم للـclass="")
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+
+  // ✅ يعرّف للـTailwind extension أنواع الملفات اللي يعتبرها HTML
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "typescript": "html",
+    "typescriptreact": "html",
+    "scss": "css"
+  },
+
+  // ✅ لو بتحب تستعمل ngClass أو binding
+  "tailwindCSS.experimental.classRegex": [
+    ["class\\s*=\\s*\"([^\"]*)\"", 1],
+    ["class\\s*=\\s*'([^']*)'", 1],
+    ["\\[ngClass\\]\\s*=\\s*\"([^\"]*)\"", 1]
+  ],
+
+  // اختيارية لكن مفيدة
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.scss": "scss"
+  }
+}
