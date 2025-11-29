@@ -4,7 +4,7 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist/social" }
+      "config": { "distDir": "dist/social/browser" }
     }
   ],
   "routes": [
