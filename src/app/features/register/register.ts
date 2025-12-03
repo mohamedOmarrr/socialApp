@@ -82,7 +82,7 @@ export class Register {
       console.log('User registered successfully:', res);
       if(res.message === 'success'){
         this.errorMessage =''
-          this.router.navigate(['/log'])
+          this.router.navigate(['/home'])
           this.loading.set(false)
           this.messageService.add({
             severity: 'success',

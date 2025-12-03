@@ -48,3 +48,14 @@ p-toast .p-toast-container {
   margin: 0 auto !important;
 }
 
+
+:root {
+  color-scheme: light !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light !important;
+  }
+}
+
