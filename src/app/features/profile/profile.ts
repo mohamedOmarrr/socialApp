@@ -1,11 +1,8 @@
-import { AfterContentInit, Component, ElementRef, HostListener, NgZone, OnInit, QueryList, Renderer2, signal, ViewChildren } from '@angular/core';
+import { Component, computed, ElementRef, HostListener, NgZone, OnInit, QueryList, Renderer2, signal, ViewChildren } from '@angular/core';
 import { UserService } from '../../core/services/user-service';
-import { Post, PostsResponse } from '../../core/interfaces/posts-interface';
-import { Posts } from "../../shared/components/posts/posts";
+import { PostsResponse } from '../../core/interfaces/posts-interface';
 import { PostsServise } from '../../core/services/posts-servise';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CommentsService } from '../../core/services/comments-service';
-import { comments } from '../../core/interfaces/comments-interface';
 import { ReactiveFormsModule, Validators, FormControl } from '@angular/forms';
 
 import { Comments } from "../../shared/components/comments/comments";
@@ -17,7 +14,6 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { tree } from '@primeng/themes/aura/treeselect';
 import { Chat } from "../chat/chat";
 
 
@@ -44,6 +40,7 @@ export class Profile implements OnInit {
   shareId = signal<string | null>(null)
   spinner = signal<boolean>(false)
   heart= signal<{ [key: string]: boolean }>({})
+ 
 
   @ViewChildren('post') Post!: QueryList<ElementRef>;
 
@@ -113,6 +110,7 @@ makeHeart(postId: string) {
       this.user.getPersonalPosts(this.userID()).subscribe({
         next: res => {
           this.userPosts.set(res)
+          this.user.userImg.set(res.posts[0].user.photo)
           this.showShimmer.set(false)
           setTimeout(() => {
             this.waitForImagesThenMeasure()

@@ -1,6 +1,7 @@
+@if(user.showUploadForm()){
 <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
   <div
-    class="bg-[#66849c] rounded-2xl p-6 w-[90%] sm:w-[400px] text-center shadow-lg relative animate-fadeIn"
+    class="picForm bg-[#66849c] rounded-2xl p-6 w-[90%] sm:w-[400px] text-center shadow-lg relative animate-fadeIn"
   >
     <i
       class="fas fa-times absolute top-3 right-3 text-gray-500 cursor-pointer hover:text-black transition"
@@ -38,8 +39,34 @@
         [disabled]="profilePicture.invalid"
         (click)="uploadProfilePicture()"
       >
-        Upload
+        @if (spinner()) {
+        <div class="flex items-center justify-center">
+          <h1>Updating…</h1>
+          <p-progress-spinner
+            strokeWidth="8"
+            fill="transparent"
+            animationDuration=".5s"
+            [style]="{ width: '20px', height: '20px' }"
+          />
+        </div>
+        } @else { Update }
       </button>
     </div>
   </div>
+</div>
+}
+
+<img
+  [src]="user.userImg() || './images/d-user.jpg'"
+  alt="Profile"
+  class="w-full h-full rounded-full object-cover shadow-lg"
+/>
+
+<div
+  class="w-[40px] h-[40px] absolute top-0 right-[-5px] bg-white/40 rounded-full flex justify-center items-center backdrop-blur-sm"
+>
+  <i
+    class="CameraBtn fas fa-camera text-[30px] text-[#66849c] cursor-pointer"
+    (click)="user.showUploadForm.set(true); $event.stopPropagation()"
+  ></i>
 </div>

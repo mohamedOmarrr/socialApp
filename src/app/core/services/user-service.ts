@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment.development';
 })
 export class UserService {
   
-
+  userImg = signal<string>('')
   showUploadForm = signal<boolean>(false)
 
   constructor(private http:HttpClient, private log:LogService){}

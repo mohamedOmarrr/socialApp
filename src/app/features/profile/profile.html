@@ -1,7 +1,4 @@
-@if (user.showUploadForm()) {
-<app-profile-img></app-profile-img>
-
-} @if(updateForm()){
+@if(updateForm()){
 <div class="fixed inset-0 flex items-center justify-center z-50">
   <!-- black overlay -->
   <div
@@ -64,20 +61,7 @@
     <div>
       <!-- profile photo -->
       <div class="relative w-[90px] h-[90px] me-4 mb-2">
-        <img
-          [src]="userPosts()?.posts?.[0]?.user?.photo || './images/d-user.jpg'"
-          alt="Profile"
-          class="w-full h-full rounded-full object-cover shadow-lg"
-        />
-
-        <div
-          class="w-[40px] h-[40px] absolute top-0 right-[-5px] bg-white/40 rounded-full flex justify-center items-center backdrop-blur-sm"
-        >
-          <i
-            class="fas fa-camera text-[30px] text-[#66849c] cursor-pointer"
-            (click)="user.showUploadForm.set(true)"
-          ></i>
-        </div>
+        <app-profile-img></app-profile-img>
       </div>
 
       <!-- text -->
@@ -143,7 +127,7 @@
       >
         <img
           class="rounded-full w-[50px] h-[50px]"
-          [src]="item.user.photo"
+          [src]="user.userImg() || item.user.photo"
           [alt]="item.user.name + ' personal photo'"
         />
       </div>
