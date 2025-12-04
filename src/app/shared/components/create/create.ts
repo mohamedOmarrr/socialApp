@@ -12,6 +12,7 @@ import { PostsServise } from '../../../core/services/posts-servise';
 import { MessageService } from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessageModule } from 'primeng/message';
+import { UserService } from '../../../core/services/user-service';
 
 @Component({
   selector: 'app-create',
@@ -31,13 +32,12 @@ import { MessageModule } from 'primeng/message';
 })
 export class Create {
 
-  visible: boolean = false
   createForm: FormGroup;
   spinner = signal<boolean>(false)
    
   @ViewChild('formRef') form!: ElementRef;
 
- constructor(private fb: FormBuilder, private post:PostsServise, private message: MessageService) {
+ constructor(private fb: FormBuilder,public user:UserService, private post:PostsServise, private message: MessageService) {
   this.createForm = this.fb.group({
     body: [null],
     image: ['']
@@ -60,7 +60,7 @@ atLeastOne(): ValidatorFn {
   callForm(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (this.form?.nativeElement.contains(target)) return;
-    this.visible = !this.visible;
+    this.user.createForm.set(false)
   }
 
 
@@ -134,7 +134,7 @@ atLeastOne(): ValidatorFn {
       next: (res) => {
         this.clearFiles();
         this.createForm.patchValue({ name: '' }); 
-        this.visible = false
+        this.user.createForm.set(false)
         this.spinner.set(false)
                         this.message.add({
                   severity: 'success',

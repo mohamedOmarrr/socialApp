@@ -13,6 +13,7 @@ export class UserService {
   
   userImg = signal<string>('')
   showUploadForm = signal<boolean>(false)
+  createForm = signal<boolean>(false)
 
   constructor(private http:HttpClient, private log:LogService){}
 

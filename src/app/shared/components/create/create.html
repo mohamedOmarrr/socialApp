@@ -1,18 +1,19 @@
 <div class="w-[80%] m-auto">
   <h1
     class="py-2 px-3 border-[3px] my-3 text-white font-mono border-gray-300 rounded-3xl cursor-pointer bg-[#66849c]"
-    (click)="callForm($event)"
+    (click)="user.createForm.set(true)"
   >
     What's in your mind
   </h1>
 </div>
 
-@if (visible) {
+@if (user.createForm()) {
 <div
   class="z-50 fixed top-0 left-0 w-full h-[100%] bg-[rgba(0,0,0,0.5)]"
   (click)="callForm($event)"
 >
   <form
+    (click)="callForm($event)"
     #formRef
     class="cursor-pointer w-[90%] lg:w-[45%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3f4f5a] p-6 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] max-w-[90%] space-y-2 animate-[fadeIn_.25s_ease]"
     [formGroup]="createForm"

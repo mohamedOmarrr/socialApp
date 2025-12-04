@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Navbar } from "./shared/navbar/navbar";
 import { Footer } from "./shared/footer/footer";
@@ -7,6 +7,8 @@ import { Toast } from "primeng/toast";
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
+import { UserService } from './core/services/user-service';
+import { CommentsService } from './core/services/comments-service';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class App {
 
   showNav = true;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private user:UserService, private comment:CommentsService) {
       this.router.events
     .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
     .subscribe((event) => {
@@ -28,5 +30,20 @@ export class App {
       this.showNav = !(url.startsWith('/signUp') || url.startsWith('/logIn'));
     });
   }
+
+  @HostListener('window:popstate')
+  backBoutton(){
+    if(this.user.createForm() || this.user.showUploadForm() || this.comment.showComments()){
+      this.user.createForm.set(false)
+      this.user.showUploadForm.set(false)
+      this.comment.showComments.set(false)
+  }if (window.scrollY > 500){
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+}
+  
 }
 

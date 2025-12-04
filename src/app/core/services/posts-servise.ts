@@ -10,6 +10,8 @@ import { environment } from '../../../environments/environment.development';
 })
 export class PostsServise {
 
+  updateForm = signal<string | null>(null)
+
   constructor(private http:HttpClient, private log:LogService){}
 
   header(){
