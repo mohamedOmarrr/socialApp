@@ -1,4 +1,4 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, computed, effect, HostListener, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Navbar } from "./shared/navbar/navbar";
 import { Footer } from "./shared/footer/footer";
@@ -29,14 +29,33 @@ export class App {
       const url = event.urlAfterRedirects;
       this.showNav = !(url.startsWith('/signUp') || url.startsWith('/logIn'));
     });
+
+    effect(() => {
+    if (this.showAnyOverlay()) {
+      history.pushState(null, '');
+    }
+  })
   }
+
+  showAnyOverlay = computed(() =>
+  this.user.createForm() ||
+  this.user.showUploadForm() ||
+  this.comment.showComments()
+)
+
+
+
+
+
+
 
   @HostListener('window:popstate')
   backBoutton(){
-    if(this.user.createForm() || this.user.showUploadForm() || this.comment.showComments()){
+    if(this.showAnyOverlay()){
       this.user.createForm.set(false)
       this.user.showUploadForm.set(false)
       this.comment.showComments.set(false)
+      history.pushState(null, '')
   }if (window.scrollY > 500){
     window.scrollTo({
       top: 0,
