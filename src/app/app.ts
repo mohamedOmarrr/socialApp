@@ -55,7 +55,7 @@ export class App {
       this.user.createForm.set(false)
       this.user.showUploadForm.set(false)
       this.comment.showComments.set(false)
-      history.pushState(null, '')
+      // history.pushState(null, '')
   }if (window.scrollY > 500){
     window.scrollTo({
       top: 0,
