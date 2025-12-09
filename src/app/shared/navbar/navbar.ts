@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
+import { CommentsService } from '../../core/services/comments-service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ import { MessageModule } from 'primeng/message';
 })
 export class Navbar {
 
-  constructor(private message:MessageService){}
+  constructor(private message:MessageService, public comment:CommentsService){}
 
   opps(){
     this.message.add({
