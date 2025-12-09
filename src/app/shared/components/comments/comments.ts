@@ -41,6 +41,8 @@ export class Comments implements OnInit {
       if(this.visiableComments() ){
         this.loading.set(true)
         this.callComments()
+      }else{
+        this.content.value === ""
       }
       this.posts.postDetails(this.postId()).subscribe(
       (res) => {
