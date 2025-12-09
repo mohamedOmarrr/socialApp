@@ -42,7 +42,7 @@ export class Comments implements OnInit {
         this.loading.set(true)
         this.callComments()
       }else{
-        this.content.value === ""
+          this.content.reset()
       }
       this.posts.postDetails(this.postId()).subscribe(
       (res) => {
