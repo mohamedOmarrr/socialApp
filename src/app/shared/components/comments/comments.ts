@@ -41,8 +41,6 @@ export class Comments implements OnInit {
       if(this.visiableComments() ){
         this.loading.set(true)
         this.callComments()
-      }else{
-          this.content.reset()
       }
       this.posts.postDetails(this.postId()).subscribe(
       (res) => {
@@ -73,7 +71,8 @@ export class Comments implements OnInit {
 
 
   commentsFunc(){
-    this.comments.showComments.set(!this.comments.showComments())
+    this.comments.showComments.set(false)
+    this.content.reset()
   }
 
 

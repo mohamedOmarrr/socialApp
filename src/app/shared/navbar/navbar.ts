@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Route, Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { CommentsService } from '../../core/services/comments-service';
+import { LogService } from '../../core/services/log-service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ import { CommentsService } from '../../core/services/comments-service';
 })
 export class Navbar {
 
-  constructor(private message:MessageService, public comment:CommentsService){}
+  constructor(private message:MessageService, public comment:CommentsService, private log:LogService, private router:Router){}
 
   opps(){
     this.message.add({
@@ -21,6 +22,12 @@ export class Navbar {
               summary: 'Opps',
               detail: "this page 'll completed soon...",
             });
+  }
+
+    logout() {
+    this.log.logOut()
+
+    this.router.navigateByUrl('/signUp', { replaceUrl: true });
   }
 
 }

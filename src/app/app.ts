@@ -61,8 +61,6 @@ export class App {
       top: 0,
       behavior: 'smooth'
     })
-    history.pushState(null, '');
-    return;
   }
 }
   
