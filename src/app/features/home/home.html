@@ -19,14 +19,12 @@
         (click)="goProfile()"
         class="border-[1px] pe-5 border-gray-400 flex rounded-full w-fit items-center bg-[#4f606e] gap-3 cursor-pointer p-1 hover:bg-[#2a2d32] transition"
       >
-        @if(userImg()){
+        @if(user.userImg() ===
+        'https://linked-posts.routemisr.com/uploads/default-profile.png'){
 
-        <img [src]="userImg()" class="w-9 h-9 rounded-full bg-white" />
+        <img src="./images/d-user.jpg" class="w-9 h-9 rounded-full bg-white" />
         }@else {
-        <img
-          src="./images/instgram user.png"
-          class="w-9 h-9 rounded-full bg-white"
-        />
+        <img [src]="user.userImg()" class="w-9 h-9 rounded-full bg-white" />
         }
 
         <div class="w-[1px] h-7 bg-white"></div>

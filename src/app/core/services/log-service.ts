@@ -10,7 +10,7 @@ import { UserService } from './user-service';
   providedIn: 'root'
 })
 export class LogService {
-  isLoggedIn = signal<boolean>(false);
+  isLoggedIn = signal<boolean>(false)
 
   constructor(
     private http: HttpClient,

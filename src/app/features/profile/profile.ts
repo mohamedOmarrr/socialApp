@@ -111,9 +111,11 @@ makeHeart(postId: string) {
     if(this.userID()){
       this.user.getPersonalPosts(this.userID()).subscribe({
         next: res => {
-          this.userPosts.set(res)
-          this.user.userImg.set(res.posts[0].user.photo)
           this.showShimmer.set(false)
+          this.userPosts.set(res)
+          
+          console.log(this.userPosts()?.posts.length === 0, this.showShimmer());
+          this.user.userImg.set(res.posts[0].user.photo)
           setTimeout(() => {
             this.waitForImagesThenMeasure()
           }, 0);

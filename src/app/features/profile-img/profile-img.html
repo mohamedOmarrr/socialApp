@@ -54,13 +54,21 @@
     </div>
   </div>
 </div>
-}
-
+} @if(user.userImg() ===
+'https://linked-posts.routemisr.com/uploads/default-profile.png'){
 <img
-  [src]="user.userImg() || './images/d-user.jpg'"
+  src="./images/d-user.jpg"
   alt="Profile"
   class="w-full h-full rounded-full object-cover shadow-lg"
 />
+
+}@else {
+<img
+  [src]="user.userImg()"
+  alt="Profile"
+  class="w-full h-full rounded-full object-cover shadow-lg"
+/>
+}
 
 <div
   class="w-[40px] h-[40px] absolute top-0 right-[-5px] bg-white/40 rounded-full flex justify-center items-center backdrop-blur-sm"

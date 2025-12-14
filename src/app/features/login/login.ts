@@ -55,7 +55,8 @@ export class Login {
       this.loading.set(true);
       this.log.login(this.loginForm.value as logDate).subscribe({
         next: (res: any) => {
-
+          console.log(res);
+          
           this.errorMessage = '';
           this.router.navigate(['/home']);
           this.loading.set(false);

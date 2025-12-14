@@ -236,8 +236,8 @@
       }
     </div>
   </div>
-  } }@else if ((userPosts()?.posts?.length ?? 0) === 0 && !showShimmer()){
-  <div class="relative">
+  } }@else if (userPosts()?.posts?.length === 0 && showShimmer() === false){
+  <div class="relative mb-28">
     <img
       src="./images/uploading-file-illustration-svg-download-png-11254005.webp"
       alt="cover for no post"
