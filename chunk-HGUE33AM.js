@@ -1,0 +1,1 @@
+import{Tb as a,Za as s,wb as n,xb as o}from"./chunk-CDDVTM4M.js";var r=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=s({type:t,selectors:[["app-reset"]],decls:2,vars:0,template:function(e,p){e&1&&(n(0,"p"),a(1,"reset works!"),o())},encapsulation:2})};export{r as Reset};
