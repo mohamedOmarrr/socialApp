@@ -20,6 +20,7 @@ export class Home implements OnInit {
 
   showOptions = signal<boolean>(false)
   userImg = signal<string | null>(null)
+  name = signal<string | null>(null)
     
   options(){
     this.showOptions.set(!this.showOptions())
@@ -41,7 +42,11 @@ export class Home implements OnInit {
 
   ngOnInit(): void {
     this.user.getUserInfo().subscribe(
-      (res) => this.userImg.set(res.image)
+      (res) => {
+        this.userImg.set(res.image)
+        const fName = res.username.split(' ') 
+        this.name.set(fName[0])
+      }
     )
   }
 

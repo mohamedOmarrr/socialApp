@@ -1,5 +1,8 @@
-import { Routes } from '@angular/router';
-import { logOutGuard } from './core/guards/log-out-guard'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { logOutGuard } from './core/guards/log-out-guard';
+
+
 export const routes: Routes = [
   { path: '', redirectTo: 'signUp', pathMatch: 'full' },
 
@@ -19,23 +22,28 @@ export const routes: Routes = [
     path: 'signUp',
     loadComponent: () => import('./features/register/register').then(m => m.Register),
     title: 'SignUp Page',
-   
   },
   { 
     path: 'logIn',
     loadComponent: () => import('./features/login/login').then(m => m.Login),
     title: 'Login Page',
-    
   },
   { 
     path: 'reset',
     loadComponent: () => import('./features/reset/reset').then(m => m.Reset),
-    title: 'resetPasword Page'
+    title: 'Reset Password Page'
   },
-
   {
     path: '**',
     loadComponent: () => import('./features/not-found/not-found').then(m => m.NotFound)
   }
 ];
+
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes, { useHash: true })], // تفعيل useHash
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
 

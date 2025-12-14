@@ -40,6 +40,7 @@ export class Profile implements OnInit {
   shareId = signal<string | null>(null)
   spinner = signal<boolean>(false)
   heart= signal<{ [key: string]: boolean }>({})
+  name = signal<string | null>(null)
  
 
   @ViewChildren('post') Post!: QueryList<ElementRef>;
@@ -97,6 +98,7 @@ makeHeart(postId: string) {
     this.user.getUserInfo().subscribe(
       (res) => {
         this.userID.set(res.id)
+        this.name.set(res.username)
         this.profilePosts()
       }
     )
