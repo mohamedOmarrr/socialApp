@@ -1,0 +1,1 @@
+import{Vb as a,_a as s,yb as n,zb as o}from"./chunk-ZW4H5ID3.js";var r=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=s({type:t,selectors:[["app-reset"]],decls:2,vars:0,template:function(e,p){e&1&&(n(0,"p"),a(1,"reset works!"),o())},encapsulation:2})};export{r as Reset};
