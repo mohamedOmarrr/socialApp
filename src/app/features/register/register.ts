@@ -1,5 +1,5 @@
 import { Component, NgZone, signal } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormsModule , FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -12,10 +12,11 @@ import { registerData } from '../../core/interfaces/register-interface';
 import { UserService } from '../../core/services/user-service';
 import { LogService } from '../../core/services/log-service';
 import { logDate } from '../../core/interfaces/log-interface';
+import { DatePickerModule } from 'primeng/datepicker'
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, ButtonModule, RouterLink, FloatLabelModule, MessageModule, ProgressSpinnerModule, ToastModule],
+  imports: [ReactiveFormsModule, FormsModule, DatePickerModule, ButtonModule, RouterLink, FloatLabelModule, MessageModule, ProgressSpinnerModule, ToastModule],
   templateUrl: './register.html',
   styleUrl: './register.scss'
 })
@@ -98,7 +99,14 @@ export class Register {
         })
             if (this.subForm.valid) {
               this.log.login(this.subForm.value as logDate).subscribe({
-                next: () => {                  
+                next: () => {      
+                    this.router.navigate(['/home']);
+                    this.loading.set(false);
+                    this.messageService.add({
+                      severity: 'success',
+                      summary: 'Success Process',
+                      detail: 'Register completed successfully, Start login',
+                    });            
                 },
                 error: (err) => {
                   console.log(err);
@@ -106,13 +114,7 @@ export class Register {
                 },
               });
             }
-            this.router.navigate(['/home']);
-            this.loading.set(false);
-            this.messageService.add({
-          severity: 'success',
-          summary: 'Success Process',
-          detail: 'Register completed successfully, Start login',
-        });
+            
 
     },
     error:  (err) => {

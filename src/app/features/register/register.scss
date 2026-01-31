@@ -1,0 +1,10 @@
+/* Force light mode for PrimeNG DatePicker */
+.p-datepicker input,
+.p-datepicker {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.p-datepicker input::placeholder {
+  color: #666 !important;
+}

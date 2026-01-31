@@ -1,0 +1,51 @@
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #fff 0%,
+    #999 20%,
+    #fff 40%,
+    #fff 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmerMove 2s linear infinite;
+}
+
+@keyframes shimmerMove {
+  0% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: -100% center;
+  }
+
+}
+
+
+.background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1; 
+
+}
+
+.bird {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: url('/images/logo-cut-removebg-preview.png') no-repeat center/contain;
+  top: calc(20% * var(--i)); 
+  left: calc(15% * var(--i));
+  animation: fly 5s linear infinite;
+  animation-delay: calc(var(--i) * 1s);
+}
+
+
+@keyframes fly {
+  0%   { transform: translate(0,0) rotate(0deg); opacity: 0.5; }
+  50%  { transform: translate(400px,200px) rotate(180deg); opacity: 1; }
+  100% { transform: translate(0,0) rotate(360deg); opacity: 0.5; }
+}

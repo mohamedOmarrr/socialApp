@@ -4,7 +4,7 @@ import { logOutGuard } from './core/guards/log-out-guard';
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'signUp', pathMatch: 'full' },
+  { path: '', redirectTo: 'logIn', pathMatch: 'full' },
 
   { 
     path: 'home',
